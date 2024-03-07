@@ -1,0 +1,103 @@
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
+
+# Install atuin 
+# bash <(curl https://raw.githubusercontent.com/atuinsh/atuin/main/install.sh) && atuin import auto
+# Install Antigen 
+# mkdir -p ~/.config/zsh && curl -L git.io/antigen > ~/.config/zsh/antigen.zsh
+# Set zsh to default shell
+# chsh -s $(which zsh)
+# Create zshenv 
+# ls ~/.config/zsh/zshenv || (touch ~/.config/zsh/zshenv)
+# Create symlinks
+# ln -s ~/.config/zsh/zshrc ~/.zshrc && ln -s ~/.config/zsh/zshenv ~/.zshenv
+# Install Zellij 
+# mkdir -p ~/.local/bin && cd ~/.local/bin && wget https://github.com/zellij-org/zellij/releases/download/v0.39.2/zellij-x86_64-unknown-linux-musl.tar.gz && tar -xvf zellij-x86_64-unknown-linux-musl.tar.gz && chmod +x zellij && rm -rf zellij-x86_64-unknown-linux-musl.tar.gz && cd -
+
+
+
+source ~/.config/zsh/antigen.zsh
+
+# If instance name is passed we use return information for current ec2 instance
+# usage: ec2_describe
+# or: ec2_describe my_ec2_name-gpu
+function ec2_describe {
+    instance_id=''
+    if [ "$1" ]; then
+        instance_id=$(aws ec2 describe-instances --query 'Reservations[].Instances[].InstanceId' --filters 'Name=tag:Name,Values='"$1"'' --output text)
+    else
+        instance_id=$(curl -s http://169.254.169.254/latest/meta-data/instance-id) 
+    fi
+    instance_name=$(aws ec2 describe-tags --filters 'Name=resource-id,Values='"$instance_id"'' "Name=key,Values=Name" --output text | cut -f5)
+    instance_ip=$(aws ec2 describe-instances --instance-ids $instance_id --query 'Reservations[*].Instances[*].PublicIpAddress' --output text)
+    instance_status=$(aws ec2 describe-instances --instance-ids $instance_id --query "Reservations[*].Instances[*].State.Name" --output text)
+    echo "Instance id: "$instance_id
+    echo "Instance ip: "$instance_ip
+    echo "Instance name: "$instance_name
+    echo "Instante state:" $instance_status
+}
+
+function ec2_login {
+    instance_ip=$(aws ec2 describe-instances --filters 'Name=tag:Name,Values='"$1"'' --query 'Reservations[*].Instances[*].PublicIpAddress' --output text)
+    echo "Instance ip: " $instance_ip
+    echo ssh -i ~/.ssh/eric.pem -L $2"8888:127.0.0.1:8888" ubuntu@$instance_ip 
+    ssh -i ~/.ssh/eric.pem -L $2"8888:127.0.0.1:8888" ubuntu@$instance_ip
+}
+
+function ec2_stop {
+    aws ec2 stop-instances --instance-ids $(aws ec2 describe-instances --query 'Reservations[].Instances[].InstanceId' --filters 'Name=tag:Name,Values='"$1"'' --output text)
+}
+function ec2_start {
+    aws ec2 start-instances --instance-ids $(aws ec2 describe-instances --query 'Reservations[].Instances[].InstanceId' --filters 'Name=tag:Name,Values='"$1"'' --output text)
+}
+
+function ec2_scp {
+    instance_ip=$(aws ec2 describe-instances --filters 'Name=tag:Name,Values='"$1"'' --query 'Reservations[*].Instances[*].PublicIpAddress' --output text)
+    scp -i ~/.ssh/eric.pem -r $2 ubuntu@$instance_ip:$3
+}
+
+
+
+
+alias bat="batcat"
+alias python="python3"
+alias pip="pip3"
+
+# Load the oh-my-zsh's library.
+antigen use oh-my-zsh
+
+# Bundles from the default repo (robbyrussell's oh-my-zsh).
+antigen bundle git
+antigen bundle aws
+antigen bundle docker
+antigen bundle docker-compose
+# antigen bundle fzf # CTRL+R, replaced by Atuin
+antigen bundle autojump # J
+antigen bundle zsh-users/zsh-autosuggestions # autocomplete
+antigen bundle bat
+antigen bundle pip
+antigen bundle lein
+antigen bundle command-not-found
+
+# Syntax highlighting bundle.
+antigen bundle zsh-users/zsh-syntax-highlighting
+
+# Load the theme.
+antigen theme romkatv/powerlevel10k
+
+# Tell Antigen that you're done.
+antigen apply
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+eval "$(atuin init zsh)"

@@ -79,7 +79,6 @@ antigen bundle docker-compose
 # antigen bundle fzf # CTRL+R, replaced by Atuin
 antigen bundle autojump # J
 antigen bundle zsh-users/zsh-autosuggestions # autocomplete
-antigen bundle bat
 antigen bundle pip
 antigen bundle lein
 antigen bundle command-not-found

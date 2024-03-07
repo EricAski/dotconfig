@@ -1,0 +1,9 @@
+/*
+/*/
+!/zsh/
+/zsh/zshenv
+!/zellij
+!/atuin
+!/nvim
+!/fonts
+!.gitignore

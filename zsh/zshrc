@@ -5,13 +5,16 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-
+# Install base packages if needed
+# sudo apt install curl wget git
 # Install autojump
 # sudo apt install autojump
 # Install atuin 
 # bash <(curl https://raw.githubusercontent.com/atuinsh/atuin/main/install.sh) && atuin import auto
 # Install Antigen 
 # mkdir -p ~/.config/zsh && curl -L git.io/antigen > ~/.config/zsh/antigen.zsh
+# Install zsh
+# sudo apt install zsh
 # Set zsh to default shell
 # chsh -s $(which zsh)
 # Create zshenv 

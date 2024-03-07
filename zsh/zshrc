@@ -6,6 +6,8 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
 fi
 
 
+# Install autojump
+# sudo apt install autojump
 # Install atuin 
 # bash <(curl https://raw.githubusercontent.com/atuinsh/atuin/main/install.sh) && atuin import auto
 # Install Antigen 
@@ -64,7 +66,7 @@ function ec2_scp {
 
 
 
-alias bat="batcat"
+alias vim="nvim"
 alias python="python3"
 alias pip="pip3"
 

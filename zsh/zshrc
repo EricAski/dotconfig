@@ -21,6 +21,7 @@ fi
 # ls ~/.config/zsh/zshenv || (touch ~/.config/zsh/zshenv)
 # Create symlinks
 # ln -s ~/.config/zsh/zshrc ~/.zshrc && ln -s ~/.config/zsh/zshenv ~/.zshenv
+# ln -s ~/.config/zsh/p10k.zsh ~/.p10k.zsh
 # Install Zellij 
 # mkdir -p ~/.local/bin && cd ~/.local/bin && wget https://github.com/zellij-org/zellij/releases/download/v0.39.2/zellij-x86_64-unknown-linux-musl.tar.gz && tar -xvf zellij-x86_64-unknown-linux-musl.tar.gz && chmod +x zellij && rm -rf zellij-x86_64-unknown-linux-musl.tar.gz && cd -
 
@@ -73,6 +74,14 @@ alias vim="nvim"
 alias python="python3"
 alias pip="pip3"
 
+
+# Regularly used directories
+alias jr="cd ~/code/research/"
+alias je="cd ~/code/ekoa/"
+alias jb="cd ~/code/back/"
+alias ja="cd ~/code/angkor/"
+
+
 # Load the oh-my-zsh's library.
 antigen use oh-my-zsh
 
@@ -83,7 +92,8 @@ antigen bundle docker
 antigen bundle docker-compose
 # antigen bundle fzf # CTRL+R, replaced by Atuin
 antigen bundle autojump # J
-antigen bundle zsh-users/zsh-autosuggestions # autocomplete
+antigen bundle marlonrichert/zsh-autocomplete@main # Context based suggestions (on bottom of screen) navigate with TAB
+antigen bundle zsh-users/zsh-autosuggestions # History based suggestions (fills current command with suggestion) validate with Left Arrow
 antigen bundle pip
 antigen bundle lein
 antigen bundle command-not-found

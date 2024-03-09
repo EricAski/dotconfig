@@ -1,0 +1,49 @@
+[legacy/profiles:]
+default='7980b1f7-0c3c-47c1-a1b5-b4d7eb25f74f'
+list=['b1dcc9dd-5262-4d8d-a863-c897e6d979b9', '76b1911f-3cdf-454d-bc9d-6ddac520222f', '6713177c-22e2-4ebd-acdd-8d70be3804ca', '7980b1f7-0c3c-47c1-a1b5-b4d7eb25f74f']
+
+[legacy/profiles:/:6713177c-22e2-4ebd-acdd-8d70be3804ca]
+background-color='rgb(0,43,54)'
+font='MesloLGS NF 12'
+foreground-color='rgb(131,148,150)'
+use-system-font=false
+use-theme-colors=false
+visible-name='Solarized'
+
+[legacy/profiles:/:76b1911f-3cdf-454d-bc9d-6ddac520222f]
+background-color='rgb(23,20,33)'
+background-transparency-percent=3
+bold-is-bright=true
+cursor-shape='underline'
+font='CaskaydiaCove Nerd Font Mono 12'
+foreground-color='rgb(208,207,204)'
+palette=['rgb(7,54,66)', 'rgb(220,50,47)', 'rgb(240,30,217)', 'rgb(0,193,255)', 'rgb(38,139,210)', 'rgb(211,54,130)', 'rgb(42,161,152)', 'rgb(238,232,213)', 'rgb(125,175,215)', 'rgb(203,75,22)', 'rgb(88,110,117)', 'rgb(101,123,131)', 'rgb(131,148,150)', 'rgb(108,113,196)', 'rgb(147,161,161)', 'rgb(253,246,227)']
+use-system-font=false
+use-theme-colors=false
+use-theme-transparency=false
+use-transparent-background=true
+visible-name='Dark'
+
+[legacy/profiles:/:7980b1f7-0c3c-47c1-a1b5-b4d7eb25f74f]
+background-color='rgb(13,11,18)'
+background-transparency-percent=7
+bold-is-bright=false
+cursor-shape='underline'
+font='MesloLGS NF 12'
+foreground-color='rgb(132,50,120)'
+login-shell=false
+palette=['rgb(7,54,66)', 'rgb(220,50,47)', 'rgb(235,38,213)', 'rgb(85,47,103)', 'rgb(38,210,186)', 'rgb(196,60,126)', 'rgb(42,161,152)', 'rgb(238,232,213)', 'rgb(0,43,54)', 'rgb(203,75,22)', 'rgb(88,110,117)', 'rgb(101,123,131)', 'rgb(131,148,150)', 'rgb(108,113,196)', 'rgb(147,161,161)', 'rgb(253,246,227)']
+use-system-font=false
+use-theme-colors=false
+use-theme-transparency=false
+use-transparent-background=true
+visible-name='Pink'
+
+[legacy/profiles:/:b1dcc9dd-5262-4d8d-a863-c897e6d979b9]
+bold-is-bright=false
+cursor-shape='underline'
+font='MesloLGS NF 12'
+palette=['rgb(23,20,33)', 'rgb(192,28,40)', 'rgb(40,172,111)', 'rgb(162,115,76)', 'rgb(18,72,139)', 'rgb(163,71,186)', 'rgb(42,161,179)', 'rgb(208,207,204)', 'rgb(94,92,100)', 'rgb(246,97,81)', 'rgb(26,101,57)', 'rgb(233,173,12)', 'rgb(42,123,222)', 'rgb(192,97,203)', 'rgb(51,199,222)', 'rgb(255,255,255)']
+use-system-font=false
+use-theme-colors=false
+visible-name='White'

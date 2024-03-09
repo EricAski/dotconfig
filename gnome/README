@@ -1,0 +1,4 @@
+To dump terminal settings:
+dconf dump /org/gnome/terminal/ > ~/.config/gnome/terminal_settings.txt
+To import them:
+dconf load /org/gnome/terminal/ < ~/.config/gnome/terminal_settings.txt

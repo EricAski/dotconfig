@@ -729,6 +729,26 @@ require('lazy').setup {
       'MunifTanjim/nui.nvim',
       '3rd/image.nvim', -- Optional image support in preview window: See `# Preview Mode` for more information
     },
+      opts = {
+        source_selector = {
+          winbar = true,
+          statusline = false
+        },
+
+    filesystem = {
+      filtered_items = {
+	 visible = true,
+	 show_hidden_count = true,
+	 hide_dotfiles = false,
+	 hide_gitignored = false,
+	 hide_by_name = {
+	   -- '.DS_Store',
+	   -- 'thumbs.db',
+	 },
+	never_show = {},
+      },
+    },
+    }
   },
 
   {

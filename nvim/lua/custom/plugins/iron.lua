@@ -18,7 +18,7 @@ return {
             command = { 'zsh' },
           },
           python = {
-            command = { '/opt/homebrew/bin/ipython', '--no-autoindent' },
+            command = { 'ipython', '--no-autoindent' },
           },
         },
         -- How the repl window will be displayed

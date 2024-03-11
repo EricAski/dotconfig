@@ -1,7 +1,7 @@
 apt update -y
 
 # Install base packages if needed
-apt install -y curl wget git build-essential
+apt install -y curl wget git build-essential unzip
  
 # Clone repo
 mkdir -p ~/.config
@@ -10,7 +10,8 @@ mv ~/temp_config/* ~/.config/
 rm -rf ~/temp_config
 
 # Create symlinks
-ln -s ~/.config/zsh/zshrc ~/.zshrc && ln -s ~/.config/zsh/zshenv ~/.zshenv
+ln -s ~/.config/zsh/zshrc ~/.zshrc
+ln -s ~/.config/zsh/zshenv ~/.zshenv
 ln -s ~/.config/zsh/p10k.zsh ~/.p10k.zsh
 
  # Create zshenv if it doesn't exist
@@ -43,6 +44,11 @@ mkdir -p ~/.local/bin && cd ~/.local/bin && wget https://github.com/zellij-org/z
 
 # install lsd (ls replacement)
 cd ~/.local/bin && wget https://github.com/lsd-rs/lsd/releases/download/v1.0.0/lsd-v1.0.0-i686-unknown-linux-gnu.tar.gz && tar -xvf lsd-v1.0.0-i686-unknown-linux-gnu.tar.gz && chmod +x  lsd-v1.0.0-i686-unknown-linux-gnu/lsd && cp lsd-v1.0.0-i686-unknown-linux-gnu/lsd . && cd - 
+
+# install aws-cli
+curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+unzip awscliv2.zip
+sudo ./aws/install
 
 
 zsh && source ~/.zshrc

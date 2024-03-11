@@ -1,32 +1,11 @@
+export PATH=$PATH:~/.local/bin/
+
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
-
-
-# Create symlinks
-# ln -s ~/.config/zsh/zshrc ~/.zshrc && ln -s ~/.config/zsh/zshenv ~/.zshenv
-# ln -s ~/.config/zsh/p10k.zsh ~/.p10k.zsh
-# Install base packages if needed
-# sudo apt install curl wget git
-# Install autojump
-# sudo apt install autojump
-# Install atuin 
-# bash <(curl https://raw.githubusercontent.com/atuinsh/atuin/main/install.sh) && atuin import auto
-# Install Antigen 
-# mkdir -p ~/.config/zsh && curl -L git.io/antigen > ~/.config/zsh/antigen.zsh
-# Install zsh
-# sudo apt install zsh
-# Set zsh to default shell
-# chsh -s $(which zsh)
-# Create zshenv 
-# ls ~/.config/zsh/zshenv || (touch ~/.config/zsh/zshenv)
-# Install Zellij 
-# mkdir -p ~/.local/bin && cd ~/.local/bin && wget https://github.com/zellij-org/zellij/releases/download/v0.39.2/zellij-x86_64-unknown-linux-musl.tar.gz && tar -xvf zellij-x86_64-unknown-linux-musl.tar.gz && chmod +x zellij && rm -rf zellij-x86_64-unknown-linux-musl.tar.gz && cd -
-# install lsd (ls replacement)
-# sudo apt install lsd
 
 source ~/.config/zsh/antigen.zsh
 

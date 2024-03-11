@@ -1,7 +1,12 @@
+apt update -y
+
+# Install base packages if needed
+apt install -y curl wget git
+ 
 # Clone repo
-mkdir -p .config
+mkdir -p ~/.config
 git clone https://github.com/EricAski/dotconfig.git ~/temp_config
-mv ~/temp_config/ ~/.config:
+mv ~/temp_config/* ~/.config/
 rm -rf ~/temp_config
 
 # Create symlinks
@@ -11,11 +16,9 @@ ln -s ~/.config/zsh/p10k.zsh ~/.p10k.zsh
  # Create zshenv if it doesn't exist
 ls ~/.config/zsh/zshenv || (touch ~/.config/zsh/zshenv)
 
-# Install base packages if needed
-apt install curl wget git
 
 # Install autojump (J command)
-apt install autojump
+apt install -y autojump
 
 # Install atuin (shell history manager, CTRL+R)
 bash <(curl https://raw.githubusercontent.com/atuinsh/atuin/main/install.sh) && atuin import auto
@@ -24,8 +27,14 @@ bash <(curl https://raw.githubusercontent.com/atuinsh/atuin/main/install.sh) && 
 mkdir -p ~/.config/zsh && curl -L git.io/antigen > ~/.config/zsh/antigen.zsh
 
 
+# Install neovim
+apt install -y software-properties-common
+add-apt-repository ppa:neovim-ppa/unstable # Only old versions are on stable
+apt install neovim
+
+
 # Install zsh
-apt install zsh
+apt install -y zsh
 # Set zsh to default shell
 chsh -s $(which zsh)
 
@@ -33,5 +42,7 @@ chsh -s $(which zsh)
 mkdir -p ~/.local/bin && cd ~/.local/bin && wget https://github.com/zellij-org/zellij/releases/download/v0.39.2/zellij-x86_64-unknown-linux-musl.tar.gz && tar -xvf zellij-x86_64-unknown-linux-musl.tar.gz && chmod +x zellij && rm -rf zellij-x86_64-unknown-linux-musl.tar.gz && cd -
 
 # install lsd (ls replacement)
-apt install lsd
+cd ~/.local/bin && wget https://github.com/lsd-rs/lsd/releases/download/v1.0.0/lsd-v1.0.0-i686-unknown-linux-gnu.tar.gz && tar -xvf lsd-v1.0.0-i686-unknown-linux-gnu.tar.gz && chmod +x  lsd-v1.0.0-i686-unknown-linux-gnu/lsd && cp lsd-v1.0.0-i686-unknown-linux-gnu/lsd . && cd - 
 
+
+zsh && source ~/.zshrc

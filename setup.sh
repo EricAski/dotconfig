@@ -1,7 +1,7 @@
 apt update -y
 
 # Install base packages if needed
-apt install -y curl wget git
+apt install -y curl wget git build-essential
  
 # Clone repo
 mkdir -p ~/.config
@@ -29,8 +29,8 @@ mkdir -p ~/.config/zsh && curl -L git.io/antigen > ~/.config/zsh/antigen.zsh
 
 # Install neovim
 apt install -y software-properties-common
-add-apt-repository ppa:neovim-ppa/unstable # Only old versions are on stable
-apt install neovim
+add-apt-repository -y ppa:neovim-ppa/unstable # Only old versions are on stable
+apt install -y neovim
 
 
 # Install zsh

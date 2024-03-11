@@ -5,6 +5,10 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
+
+# Create symlinks
+# ln -s ~/.config/zsh/zshrc ~/.zshrc && ln -s ~/.config/zsh/zshenv ~/.zshenv
+# ln -s ~/.config/zsh/p10k.zsh ~/.p10k.zsh
 # Install base packages if needed
 # sudo apt install curl wget git
 # Install autojump
@@ -19,67 +23,16 @@ fi
 # chsh -s $(which zsh)
 # Create zshenv 
 # ls ~/.config/zsh/zshenv || (touch ~/.config/zsh/zshenv)
-# Create symlinks
-# ln -s ~/.config/zsh/zshrc ~/.zshrc && ln -s ~/.config/zsh/zshenv ~/.zshenv
-# ln -s ~/.config/zsh/p10k.zsh ~/.p10k.zsh
 # Install Zellij 
 # mkdir -p ~/.local/bin && cd ~/.local/bin && wget https://github.com/zellij-org/zellij/releases/download/v0.39.2/zellij-x86_64-unknown-linux-musl.tar.gz && tar -xvf zellij-x86_64-unknown-linux-musl.tar.gz && chmod +x zellij && rm -rf zellij-x86_64-unknown-linux-musl.tar.gz && cd -
-
-
+# install lsd (ls replacement)
+# sudo apt install lsd
 
 source ~/.config/zsh/antigen.zsh
 
-# If instance name is passed we use return information for current ec2 instance
-# usage: ec2_describe
-# or: ec2_describe my_ec2_name-gpu
-function ec2_describe {
-    instance_id=''
-    if [ "$1" ]; then
-        instance_id=$(aws ec2 describe-instances --query 'Reservations[].Instances[].InstanceId' --filters 'Name=tag:Name,Values='"$1"'' --output text)
-    else
-        instance_id=$(curl -s http://169.254.169.254/latest/meta-data/instance-id) 
-    fi
-    instance_name=$(aws ec2 describe-tags --filters 'Name=resource-id,Values='"$instance_id"'' "Name=key,Values=Name" --output text | cut -f5)
-    instance_ip=$(aws ec2 describe-instances --instance-ids $instance_id --query 'Reservations[*].Instances[*].PublicIpAddress' --output text)
-    instance_status=$(aws ec2 describe-instances --instance-ids $instance_id --query "Reservations[*].Instances[*].State.Name" --output text)
-    echo "Instance id: "$instance_id
-    echo "Instance ip: "$instance_ip
-    echo "Instance name: "$instance_name
-    echo "Instante state:" $instance_status
-}
+source ~/.config/zsh/aws.zsh
 
-function ec2_login {
-    instance_ip=$(aws ec2 describe-instances --filters 'Name=tag:Name,Values='"$1"'' --query 'Reservations[*].Instances[*].PublicIpAddress' --output text)
-    echo "Instance ip: " $instance_ip
-    echo ssh -i ~/.ssh/eric.pem -L $2"8888:127.0.0.1:8888" ubuntu@$instance_ip 
-    ssh -i ~/.ssh/eric.pem -L $2"8888:127.0.0.1:8888" ubuntu@$instance_ip
-}
-
-function ec2_stop {
-    aws ec2 stop-instances --instance-ids $(aws ec2 describe-instances --query 'Reservations[].Instances[].InstanceId' --filters 'Name=tag:Name,Values='"$1"'' --output text)
-}
-function ec2_start {
-    aws ec2 start-instances --instance-ids $(aws ec2 describe-instances --query 'Reservations[].Instances[].InstanceId' --filters 'Name=tag:Name,Values='"$1"'' --output text)
-}
-
-function ec2_scp {
-    instance_ip=$(aws ec2 describe-instances --filters 'Name=tag:Name,Values='"$1"'' --query 'Reservations[*].Instances[*].PublicIpAddress' --output text)
-    scp -i ~/.ssh/eric.pem -r $2 ubuntu@$instance_ip:$3
-}
-
-
-
-
-alias vim="nvim"
-alias python="python3"
-alias pip="pip3"
-
-
-# Regularly used directories
-alias jr="cd ~/code/research/"
-alias je="cd ~/code/ekoa/"
-alias jb="cd ~/code/back/"
-alias ja="cd ~/code/angkor/"
+source ~/.config/zsh/aliases.zsh
 
 
 # Load the oh-my-zsh's library.
@@ -95,7 +48,6 @@ antigen bundle autojump # J
 antigen bundle marlonrichert/zsh-autocomplete@main # Context based suggestions (on bottom of screen) navigate with TAB
 antigen bundle zsh-users/zsh-autosuggestions # History based suggestions (fills current command with suggestion) validate with Left Arrow
 antigen bundle pip
-antigen bundle lein
 antigen bundle command-not-found
 
 # Syntax highlighting bundle.

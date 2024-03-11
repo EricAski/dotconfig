@@ -42,8 +42,11 @@ chsh -s $(which zsh)
 # Install Zellij (tmux alternative)
 mkdir -p ~/.local/bin && cd ~/.local/bin && wget https://github.com/zellij-org/zellij/releases/download/v0.39.2/zellij-x86_64-unknown-linux-musl.tar.gz && tar -xvf zellij-x86_64-unknown-linux-musl.tar.gz && chmod +x zellij && rm -rf zellij-x86_64-unknown-linux-musl.tar.gz && cd -
 
-# install lsd (ls replacement)
+# Install lsd (ls replacement)
 cd ~/.local/bin && wget https://github.com/lsd-rs/lsd/releases/download/v1.0.0/lsd-v1.0.0-i686-unknown-linux-gnu.tar.gz && tar -xvf lsd-v1.0.0-i686-unknown-linux-gnu.tar.gz && chmod +x  lsd-v1.0.0-i686-unknown-linux-gnu/lsd && cp lsd-v1.0.0-i686-unknown-linux-gnu/lsd . && cd - 
+
+# Install bat (cat replacement)
+apt install bat
 
 # install aws-cli
 curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"

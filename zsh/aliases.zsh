@@ -10,4 +10,5 @@ alias jb="cd ~/code/back/"
 alias ja="cd ~/code/angkor/"
 alias j.c="cd ~/.config/"
 
-alias ls="lsd --group-directories-first" 
+alias ls="lsd --group-directories-first"
+alias cat="bat -p"

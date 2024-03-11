@@ -31,7 +31,7 @@ mkdir -p ~/.config/zsh && curl -L git.io/antigen > ~/.config/zsh/antigen.zsh
 apt install -y software-properties-common
 add-apt-repository -y ppa:neovim-ppa/unstable # Only old versions are on stable
 apt install -y neovim
-
+nvim --headless "+Lazy! sync" +qa
 
 # Install zsh
 apt install -y zsh

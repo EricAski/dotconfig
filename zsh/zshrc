@@ -9,11 +9,6 @@ fi
 
 source ~/.config/zsh/antigen.zsh
 
-source ~/.config/zsh/aws.zsh
-
-source ~/.config/zsh/aliases.zsh
-
-
 # Load the oh-my-zsh's library.
 antigen use oh-my-zsh
 
@@ -44,5 +39,12 @@ antigen apply
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+
+
+source ~/.config/zsh/aws.zsh
+
+source ~/.config/zsh/aliases.zsh
+
 
 eval "$(atuin init zsh)"

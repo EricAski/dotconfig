@@ -770,7 +770,7 @@ require('lazy').setup {
     end,
   },
 
-  -- Winbar (on top) displays python context
+  -- Winbar (on top) displays code context
   {
     'utilyre/barbecue.nvim',
     name = 'barbecue',
@@ -798,6 +798,8 @@ require('lazy').setup {
       'nvim-lua/plenary.nvim',
     },
   },
+  -- Adds jk for escape
+  { 'jdhao/better-escape.vim', name = 'better-escape', version = '*' },
 
   -- The following two comments only work if you have downloaded the kickstart repo, not just copy pasted the
   -- init.lua. If you want these files, they are in the repository, so you can just download them and

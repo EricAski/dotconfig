@@ -78,6 +78,8 @@ vim.opt.hlsearch = true
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 
 -- Diagnostic keymaps
+
+vim.diagnostic.config { virtual_text = false }
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous [D]iagnostic message' })
 vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next [D]iagnostic message' })
 vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Show diagnostic [E]rror messages' })
@@ -729,26 +731,26 @@ require('lazy').setup {
       'MunifTanjim/nui.nvim',
       '3rd/image.nvim', -- Optional image support in preview window: See `# Preview Mode` for more information
     },
-      opts = {
-        source_selector = {
-          winbar = true,
-          statusline = false
-        },
+    opts = {
+      source_selector = {
+        winbar = true,
+        statusline = false,
+      },
 
-    filesystem = {
-      filtered_items = {
-	 visible = true,
-	 show_hidden_count = true,
-	 hide_dotfiles = false,
-	 hide_gitignored = false,
-	 hide_by_name = {
-	   -- '.DS_Store',
-	   -- 'thumbs.db',
-	 },
-	never_show = {},
+      filesystem = {
+        filtered_items = {
+          visible = true,
+          show_hidden_count = true,
+          hide_dotfiles = false,
+          hide_gitignored = false,
+          hide_by_name = {
+            -- '.DS_Store',
+            -- 'thumbs.db',
+          },
+          never_show = {},
+        },
       },
     },
-    }
   },
 
   {
@@ -795,41 +797,6 @@ require('lazy').setup {
     dependencies = {
       'nvim-lua/plenary.nvim',
     },
-  },
-
-  {
-    'GCBallesteros/NotebookNavigator.nvim',
-    keys = {
-      {
-        ']h',
-        function()
-          require('notebook-navigator').move_cell 'd'
-        end,
-      },
-      {
-        '[h',
-        function()
-          require('notebook-navigator').move_cell 'u'
-        end,
-      },
-      { '<leader>X', "<cmd>lua require('notebook-navigator').run_cell()<cr>" },
-      { '<leader>x', "<cmd>lua require('notebook-navigator').run_and_move()<cr>" },
-    },
-    dependencies = {
-      'echasnovski/mini.comment',
-      'hkupty/iron.nvim', -- repl provider
-      -- "akinsho/toggleterm.nvim", -- alternative repl provider
-      -- "benlubas/molten-nvim", -- alternative repl provider
-      'anuvyklack/hydra.nvim',
-    },
-    event = 'VeryLazy',
-    config = function()
-      local nn = require 'notebook-navigator'
-      nn.setup {
-        activate_hydra_keys = '<leader>h',
-        syntax_highlight = true,
-      }
-    end,
   },
 
   -- The following two comments only work if you have downloaded the kickstart repo, not just copy pasted the

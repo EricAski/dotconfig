@@ -8,6 +8,12 @@ Kickstart Guide:
 
 -- CUSTOM SETTINGS:
 vim.wo.relativenumber = true
+-- https://stackoverflow.com/questions/62100785/auto-reload-file-and-in-neovim-and-auto-reload-nerbtree
+vim.o.autoread = true
+vim.api.nvim_create_autocmd(
+  { 'FileChangedShellPost' },
+  { command = 'echohl WarningMsg | echo "File changed on disk. Buffer reloaded." | echohl None', pattern = { '*' } }
+)
 
 -- Set <space> as the leader key
 -- See `:help mapleader`

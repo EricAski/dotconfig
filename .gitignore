@@ -2,6 +2,7 @@
 /*/
 !/zsh/
 /zsh/zshenv
+!/lazygit
 !/zellij
 !/atuin
 !/nvim

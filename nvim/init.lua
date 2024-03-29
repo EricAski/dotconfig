@@ -14,6 +14,8 @@ vim.api.nvim_create_autocmd(
   { 'FileChangedShellPost' },
   { command = 'echohl WarningMsg | echo "File changed on disk. Buffer reloaded." | echohl None', pattern = { '*' } }
 )
+vim.keymap.set('n', 'oo', 'o<Esc>', { noremap = true, silent = true, desc="Insert new line above" })
+vim.keymap.set('n', 'OO', 'O<Esc>', { noremap = true, silent = true , desc="Insert new line below" })
 
 -- Set <space> as the leader key
 -- See `:help mapleader`

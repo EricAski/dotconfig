@@ -22,7 +22,7 @@ ls ~/.config/zsh/zshenv || (touch ~/.config/zsh/zshenv)
 apt install -y autojump
 
 # Install atuin (shell history manager, CTRL+R)
-bash <(curl https://raw.githubusercontent.com/atuinsh/atuin/main/install.sh) && atuin import auto
+curl --proto '=https' --tlsv1.2 -LsSf https://setup.atuin.sh | sh && atuin import auto
 
 # Install Antigen (ZSH package manager)
 mkdir -p ~/.config/zsh && curl -L git.io/antigen > ~/.config/zsh/antigen.zsh

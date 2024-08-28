@@ -20,8 +20,8 @@ function ec2_describe {
 function ec2_login {
     instance_ip=$(aws ec2 describe-instances --filters 'Name=tag:Name,Values='"$1"'' --query 'Reservations[*].Instances[*].PublicIpAddress' --output text)
     echo "Instance ip: " $instance_ip
-    echo ssh -i ~/.ssh/eric.pem -L $2"8888:127.0.0.1:8888" ubuntu@$instance_ip 
-    ssh -i ~/.ssh/eric.pem -L $2"8888:127.0.0.1:8888" ubuntu@$instance_ip
+    echo ssh -i ~/.ssh/eric.pem -L $2"8000:127.0.0.1:8000" -L $2"8888:127.0.0.1:8888" ubuntu@$instance_ip
+    ssh -i ~/.ssh/eric.pem -L $2"8000:127.0.0.1:8000" -L $2"8888:127.0.0.1:8888" ubuntu@$instance_ip
 }
 
 function ec2_stop {

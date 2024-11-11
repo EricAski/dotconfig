@@ -48,3 +48,5 @@ source ~/.config/zsh/aliases.zsh
 
 
 eval "$(atuin init zsh)"
+
+. "$HOME/.atuin/bin/env"

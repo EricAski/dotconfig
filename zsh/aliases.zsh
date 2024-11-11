@@ -2,6 +2,7 @@ alias vim="nvim"
 alias python="python3"
 alias pip="pip3"
 
+alias kubupdate='python3 ~/code/infra/aws/update_cluster.py'
 
 # Regularly used directories
 alias jr="cd ~/code/research/"
